@@ -1,13 +1,19 @@
 package com.company.features;
 
 import com.company.base.BaseTest;
+import com.company.pages.RedmineHomePage;
+import com.company.pages.RedmineLandingPage;
+import com.company.pages.RedmineLoginPage;
+import com.company.utils.Urls;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AndroidEmulatorChrome extends BaseTest {
+public class AndroidEmulatorRedmineWebUITest extends BaseTest {
+
 
     @Test
-    public void testOpenChromeEmulatorNexus5Android7(){
+    public void testLoginRedmineEmulatorNexus5Android7(){
 
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("automationName", "UiAutomator2");
@@ -30,7 +36,23 @@ public class AndroidEmulatorChrome extends BaseTest {
 
         configAppiumDriver(cap);
 
-        System.out.println(".....");
+        driver.get(Urls.REDMINE_URL_LOCAL);
 
+        RedmineLandingPage redmineLandingPage = new RedmineLandingPage(driver);
+        redmineLandingPage.clickOnMobileMenu();
+
+        RedmineLoginPage redmineLoginPage = redmineLandingPage.clickLinkLogin();
+        RedmineHomePage redmineHomePage = redmineLoginPage.login("user", "bitnami1");
+
+        redmineLandingPage.clickOnMobileMenu();
+
+        String expectedUser = "user";
+        String actualUser = redmineHomePage.getUserLoggedMobileEmulation();
+
+        System.out.println("interruption..");
+
+        Assert.assertEquals("Login falido",
+                expectedUser,
+                actualUser);
     }
 }
