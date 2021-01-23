@@ -5,25 +5,35 @@ import com.company.pages.RedmineHomePage;
 import com.company.pages.RedmineLandingPage;
 import com.company.pages.RedmineLoginPage;
 import com.company.utils.Urls;
+import com.google.common.collect.ImmutableMap;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AndroidEmulatorRedmineWebUITest extends BaseTest {
+public class AndroidRealDeviceRedmineWebUITest extends BaseTest {
 
 
     @Test
-    public void testLoginRedmineEmulatorNexus5Android7(){
+    public void testLoginRedmineRealDeviceLGXAndroid9(){
+
+          /* Consideraciones
+        1.- Requisito: Activar las opciones para desarrolladores y la depuración por usb en el
+        dispositivo real.
+        2.- Descargar el chromedriver para la versión correcta de nuestro chrome de nuestro dispositivo móvil.
+        3.- Identificar el "udid" correcto, conectando con un cable usb Movil - COmputadora ( y seleccionar transferencia
+         de archivos); luego ejecutar el  comando en la terminal : adb devices
+        */
 
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("platformName","Android");
         cap.setCapability("platformVersion","7.0");
-        cap.setCapability("deviceName","Nexus5Android7");
-        cap.setCapability("avd","Nexus5Android7");
-        cap.setCapability("avdArgs","-port 5557");
+        cap.setCapability("deviceName","LG X max");
+        cap.setCapability("udid","LGK240IN9HSGHA");
 
         cap.setCapability("browserName", "Chrome");
+
+        cap.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
 
         //Para Windows
         cap.setCapability("chromedriverExecutableDir",
@@ -55,4 +65,5 @@ public class AndroidEmulatorRedmineWebUITest extends BaseTest {
                 expectedUser,
                 actualUser);
     }
+
 }

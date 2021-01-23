@@ -20,12 +20,12 @@ public class AndroidEmulatorChrome extends BaseTest {
         cap.setCapability("browserName", "Chrome");
 
         //Para Windows
-        /*cap.setCapability("chromedriverExecutableDir",
-                "CAMBIAR_POR_SU_RUTA/projectg3-appium-e2e/resources/drivers/windows");*/
+        cap.setCapability("chromedriverExecutableDir",
+                "CAMBIAR_POR_SU_RUTA/projectg3-appium-e2e/resources/drivers/windows");
 
         //Para MAC
-        cap.setCapability("chromedriverExecutableDir",
-                "/Users/jhumbertoh/Proyectos/Publicos/projectg3-appium-e2e/resources/drivers/mac");
+        /*cap.setCapability("chromedriverExecutableDir",
+                "/Users/jhumbertoh/Proyectos/Publicos/projectg3-appium-e2e/resources/drivers/mac");*/
 
 
         configAppiumDriver(cap);
