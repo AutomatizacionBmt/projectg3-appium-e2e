@@ -28,11 +28,12 @@ public class AndroidRealDeviceRedmineWebUITest extends BaseTest {
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("platformName","Android");
         cap.setCapability("platformVersion","7.0");
+
+        //Propiedades según su dispositivo movil
         cap.setCapability("deviceName","LG X max");
         cap.setCapability("udid","LGK240IN9HSGHA");
 
         cap.setCapability("browserName", "Chrome");
-
         cap.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
 
         //Para Windows
