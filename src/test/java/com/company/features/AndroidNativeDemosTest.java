@@ -109,4 +109,69 @@ public class AndroidNativeDemosTest extends BaseTest {
     }
 
 
+    @Test
+    public void testScrollingDemoNexusAndroid7(){
+
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("automationName", "UiAutomator2");
+        cap.setCapability("platformName","Android");
+        cap.setCapability("platformVersion","7.0");
+        cap.setCapability("deviceName","Nexus5Android7");
+        cap.setCapability("newComandTimeout", "200");
+
+        //Dispositivo Virtual
+        cap.setCapability("avd","Nexus5Android7");
+        cap.setCapability("avdArgs","-port 5557");
+
+        //Dispositivo Real
+        //cap.setCapability("udid","emulator-5554");
+
+        cap.setCapability("app", "/Users/jhumbertoh/Proyectos/Publicos/projectg3-appium-e2e/resources/apk/ApiDemos-debug.apk");
+
+        configAppiumDriver(cap);
+
+        driver.findElementByXPath("//android.widget.TextView[@content-desc=\"Views\"]").click();
+
+        AndroidDriver androidDriver = (AndroidDriver)driver;
+
+        androidDriver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));");
+
+    }
+
+    @Test
+    public void testDragAndDropDemoNexusAndroid7(){
+
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("automationName", "UiAutomator2");
+        cap.setCapability("platformName","Android");
+        cap.setCapability("platformVersion","7.0");
+        cap.setCapability("deviceName","Nexus5Android7");
+        cap.setCapability("newComandTimeout", "200");
+
+        //Dispositivo Virtual
+        cap.setCapability("avd","Nexus5Android7");
+        cap.setCapability("avdArgs","-port 5557");
+
+        //Dispositivo Real
+        //cap.setCapability("udid","emulator-5554");
+
+        cap.setCapability("app", "/Users/jhumbertoh/Proyectos/Publicos/projectg3-appium-e2e/resources/apk/ApiDemos-debug.apk");
+
+        configAppiumDriver(cap);
+
+        driver.findElementByXPath("//android.widget.TextView[@content-desc=\"Views\"]").click();
+        driver.findElementByXPath("//android.widget.TextView[@content-desc=\"Drag and Drop\"]").click();
+
+        List<WebElement> elements = driver.findElementsByClassName("android.view.View");
+
+        WebElement source = elements.get(0);
+        WebElement destination = elements.get(1);
+
+        TouchAction touch = new TouchAction(driver);
+        touch.longPress(element(source))
+                .moveTo(element(destination))
+                .release()
+                .perform();
+
+    }
 }
