@@ -30,8 +30,8 @@ public class AndroidRealDeviceRedmineWebUITest extends BaseTest {
         cap.setCapability("platformVersion","7.0");
 
         //Propiedades según su dispositivo movil
-        cap.setCapability("deviceName","LG X max");
-        cap.setCapability("udid","LGK240IN9HSGHA");
+        cap.setCapability("deviceName","device");
+        cap.setCapability("udid","emulator-5554");
 
         cap.setCapability("browserName", "Chrome");
         cap.setCapability("appium:chromeOptions", ImmutableMap.of("w3c", false));
@@ -62,7 +62,7 @@ public class AndroidRealDeviceRedmineWebUITest extends BaseTest {
 
         System.out.println("interruption..");
 
-        Assert.assertEquals("Login falido",
+        Assert.assertEquals("Login fallido",
                 expectedUser,
                 actualUser);
     }
